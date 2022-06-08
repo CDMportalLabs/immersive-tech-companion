@@ -26,7 +26,7 @@ const LoginForm = () => {
     name: "",
     additional: ""
   });
-  const [registering, setRegistering] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(async () => {
     const customerToken = Cookies.get("customerToken");
@@ -43,8 +43,10 @@ const LoginForm = () => {
   }
 
   const handleLogin = async () => {
+    setLoading(true);
     const authStatus = await authenticate(email, password);
     setLoggedIn(authStatus?.status);
+    setLoading(false);
   }
 
   const handleLogOut = () => {
@@ -53,10 +55,10 @@ const LoginForm = () => {
   }
 
   const handleRegister = async () => {
-    setRegistering(true);
+    setLoading(true);
     const userInfo = await register(email, password, userProfile);
     if (userInfo) {
-      setRegistering(false);
+      setLoading(false);
       setEmailValid(true);
     }
     return userInfo;
@@ -107,7 +109,7 @@ const LoginForm = () => {
               onChange={handleProfileChange}
             />
           }
-          <ButtonComponent loginStatus={isLoggedIn} isEmailValid={isEmailValid} handleLogOut={handleLogOut} handleLogin={handleLogin} handleRegister={handleRegister} registering={registering}/>
+          <ButtonComponent loginStatus={isLoggedIn} isEmailValid={isEmailValid} handleLogOut={handleLogOut} handleLogin={handleLogin} handleRegister={handleRegister} loading={loading}/>
         </Box>
       </form>
     </Box>
@@ -150,14 +152,14 @@ const ButtonComponent = (props) => {
     else return (
       <Button sx={styles.loginButton}
       onClick={() => props.handleLogin()}
-    >
+    >{props.loading ? <CircularProgress sx={{width: "60%"}}/> : null}
       Login</Button>
     )
   } else {
     return (
       <Button sx={styles.loginButton}
       onClick={() => props.handleRegister()}
-    >{props.registering ? <CircularProgress sx={{width: "60%"}}/> : null}
+    >{props.loading ? <CircularProgress sx={{width: "60%"}}/> : null}
       Register</Button>
     )
   }
