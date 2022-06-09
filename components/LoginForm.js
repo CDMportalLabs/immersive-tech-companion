@@ -6,6 +6,11 @@ import { useTheme, createTheme, ThemeProvider } from "@mui/material/styles"
 import { validateEmail, authenticate, register } from "../lib/auth-service";
 import Cookies from 'js-cookie';
 
+const LOGIN_STATUS = {
+  INVALID_CRED: 0,
+  LOGGED_IN: 1
+}
+
 const LoginForm = () => {
   const theme = useTheme()
   const styles = {
@@ -30,12 +35,17 @@ const LoginForm = () => {
 
   useEffect(async () => {
     const customerToken = Cookies.get("customerToken");
-    console.log(customerToken);
+    //console.log(customerToken);
     if (!!customerToken ) {
-      setLoggedIn(1);
-      router.push("/booking");
+      setLoggedIn(LOGIN_STATUS.LOGGED_IN);
     }
   }, [])
+
+  useEffect(() => {
+    if (isLoggedIn === LOGIN_STATUS.LOGGED_IN) {
+      router.push("/booking");
+    }
+  }, [isLoggedIn])
 
   const handleEmailValidation = async (email) => {
     const validStatus = await validateEmail(email);
@@ -121,11 +131,11 @@ const LoginForm = () => {
 
 const LoginStatusBanner = ({status}) => {
   switch (status) {
-    case 0:
+    case LOGIN_STATUS.INVALID_CRED:
       return (
         <p>Invalid credentials</p>
       );
-    case 1:
+    case LOGIN_STATUS.LOGGED_IN:
       return (
         <p>You are logged in!</p>
       );
@@ -147,7 +157,7 @@ const ButtonComponent = (props) => {
   }
 
   if (props.isEmailValid !== false) {
-    if (props.loginStatus === 1) return (
+    if (props.loginStatus === LOGIN_STATUS.LOGGED_IN) return (
       <Button sx={styles.logOutButton}
       onClick={() => props.handleLogOut()}
     >Logout</Button>
