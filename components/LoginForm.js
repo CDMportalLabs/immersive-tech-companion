@@ -18,7 +18,7 @@ const LoginForm = () => {
 
   const router = useRouter();
 
-  const [isEmailValid, setEmailValid] = useState(false);
+  const [isEmailValid, setEmailValid] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(null);
@@ -93,14 +93,17 @@ const LoginForm = () => {
               }
             }}
           />
-          <TextField
-              required
-              id="outlined-required"
-              label="Password(at least 6 characters)"
-              onChange={(e) => setPassword(e.target.value)}
-          />
           {
-            isEmailValid ? null :
+            isEmailValid == null ? null :
+            <TextField
+            required
+            id="outlined-required"
+            label="Password(at least 6 characters)"
+            onChange={(e) => setPassword(e.target.value)}
+        />
+          }
+          {
+            isEmailValid !== false ? null :
               <TextField
               required
               id="outlined-required"
@@ -143,7 +146,7 @@ const ButtonComponent = (props) => {
     `
   }
 
-  if (props.isEmailValid) {
+  if (props.isEmailValid !== false) {
     if (props.loginStatus === 1) return (
       <Button sx={styles.logOutButton}
       onClick={() => props.handleLogOut()}
