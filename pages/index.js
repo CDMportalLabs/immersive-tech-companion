@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import Box from '@mui/material/Box';
 import { TextField, Button, Grid } from "@mui/material";
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 export default function Home() {
   const SYNTHESIS_PUBLIC_KEY = process.env.NEXT_PUBLIC_SYNTHESIS_PUBLIC_KEY || "";
+  const router = useRouter();
 
   const [groupSize, setGroupSize] = useState(3);
   const [date, setDate] = useState("2022-06-01");
@@ -15,7 +18,8 @@ export default function Home() {
 
   const fetchData = async () => {
     return fetch(apiUrl)
-    .then(response => response.json());
+    .then(response => response.json())
+    .catch(error => console.log('error', error));
   }
 
   useEffect(() => {
@@ -41,6 +45,15 @@ export default function Home() {
       console.log(err);
     }
   }
+  
+  const handleBooking = (time) => {
+    // Store as cookie for now, will use router query data transfer later
+    Cookies.set('date', date);
+    Cookies.set('time', time);
+    Cookies.set('duration', duration);
+    Cookies.set('groupSize', groupSize);
+    Cookies.set('experienceId', experienceId);
+    router.push("/login");}
 
   return (
     <div>
@@ -86,12 +99,12 @@ export default function Home() {
               sx={{
                 maxHeight: "320px",
                 overflowY: "auto",
-                width: "240px",
-              }}
-            >
+                width: "100px",
+              }}>
               {availabilities.map((availability, idx) => (
                 <>
-                  <div key={idx}>Slot: {availability.startTime}</div>
+                  <div key={idx}> {availability.value}</div>
+                  <Button onClick={() => handleBooking(availability.value)}>book</Button>
                 </>
               ))}
             </Box>
