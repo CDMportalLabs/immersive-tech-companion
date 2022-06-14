@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Cookies from 'js-cookie';
 import BookingConfirmation from "../../components/bookingPage";
+import {useRouter} from "next/router";
 
 export default function BookingSuccess() {
-    const date = Cookies.get('date');
-	const time = Cookies.get('time');
+    const { query } = useRouter();
     return (
-        <BookingConfirmation date={date} time={time}/>
+        <BookingConfirmation date={query.date} time={query.time}/>
     )
   }

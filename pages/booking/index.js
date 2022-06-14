@@ -40,13 +40,17 @@ export default function Home() {
     }
 
     const handleBooking = async (time) => {
-        // Store as cookie for now, will use router query data transfer later
-        Cookies.set('date', date);
-        Cookies.set('time', time);
-        Cookies.set('duration', duration);
-        Cookies.set('groupSize', groupSize);
+        // Use router query data to transfer booking details to confirmation page
         await bookSession(date, groupSize, duration, time)
-        router.push("/booking/success");
+        router.push({
+            pathname: "/booking/success",
+            query: {
+                date: date,
+                time: time,
+                duration: duration,
+                groupSize: groupSize
+            }
+        });
     }
 
     return (
