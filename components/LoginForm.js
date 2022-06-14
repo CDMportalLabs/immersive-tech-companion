@@ -43,11 +43,11 @@ const LoginForm = () => {
     }
   }, [])
 
-  useEffect(() => {
-    if (isLoggedIn === LOGIN_STATUS.LOGGED_IN) {
-      router.push("/booking");
-    }
-  }, [isLoggedIn])
+  // useEffect(() => {
+  //   if (isLoggedIn === LOGIN_STATUS.LOGGED_IN) {
+  //     router.push("/booking");
+  //   }
+  // }, [isLoggedIn])
 
   const handleEmailValidation = async (email) => {
     const validStatus = await validateEmail(email);
