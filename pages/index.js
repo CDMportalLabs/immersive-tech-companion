@@ -2,45 +2,10 @@ import React, { useState, useEffect } from "react";
 import Box from '@mui/material/Box';
 import { TextField, Button, Grid } from "@mui/material";
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 export default function Home() {
-  const SYNTHESIS_PUBLIC_KEY = process.env.NEXT_PUBLIC_SYNTHESIS_PUBLIC_KEY || "";
-
-  const [groupSize, setGroupSize] = useState(3);
-  const [date, setDate] = useState("2022-06-01");
-  const [duration, setDuration] = useState(60);
-  const [experienceId, setExperienceId] = useState(2626);
-  const [ availabilities, setAvailabilities ] = useState([]);
-  let apiUrl = `https://api.synthesisvr.com/web/${SYNTHESIS_PUBLIC_KEY}/availability?people=${groupSize}&date=${date}&duration=${duration}&experience=${experienceId}`;
-
-  const fetchData = async () => {
-    return fetch(apiUrl)
-    .then(response => response.json());
-  }
-
-  useEffect(() => {
-    fetchData()
-    .then((resp) => {
-      console.log(resp);
-      const availableTimes = resp.times ? Object.values(resp.times) : [];
-      setAvailabilities(availableTimes);
-    })
-    return;
-  }, [])
-
-  const handleSearchAvabilities = () => {
-    try {
-      fetchData()
-      .then((resp) => {
-        console.log(resp);
-        const availableTimes = resp.times ? Object.values(resp.times) : [];
-        setAvailabilities(availableTimes);
-      })
-      // .catch((err) => console.log(err));
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
   return (
     <div>
@@ -51,52 +16,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <Box
-          sx={{
-            display: "flex",
-            height: "100vh",
-            width: "100vw",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-            gridGap: 8,
-            background:
-              "linear-gradient(180deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)",
-          }}>
-          {/* {loading && <h4>Loading...</h4>} */}
-          {/* <Auth /> */}
-            <Grid container spacing={2} direction="row" justifyContent="center" alignItems="center">
-              <Grid item xs="auto">
-                <TextField id="standard-basic" label="Group Size" variant="standard" defaultValue={groupSize} onChange={(e) => setGroupSize(e.target.value)}/>
-              </Grid>
-              <Grid item xs="auto">
-                <TextField id="standard-basic" label="Date" variant="standard" defaultValue={date} onChange={(e) => setDate(e.target.value)}/>
-              </Grid>
-              <Grid item xs="auto">
-                <TextField id="standard-basic" label="Duration" variant="standard" defaultValue={duration} onChange={(e) => setDuration(e.target.value)}/>
-              </Grid>
-              <Grid item xs="auto">
-                <TextField id="standard-basic" label="Experience ID" variant="standard" defaultValue={experienceId} onChange={(e) => setExperienceId(e.target.value)}/>
-              </Grid>
-            </Grid>
-          <Button onClick={() => handleSearchAvabilities()}>Search Availabilities</Button>
-          <Box sx={{ marginTop: "64px" }}>
-            <h3>Time Slots:</h3>
-            <Box
-              sx={{
-                maxHeight: "320px",
-                overflowY: "auto",
-                width: "240px",
-              }}
-            >
-              {availabilities.map((availability, idx) => (
-                <>
-                  <div key={idx}>Slot: {availability.startTime}</div>
-                </>
-              ))}
-            </Box>
-          </Box>
-        </Box>
+        Landing page
       </main>
     </div>
   )

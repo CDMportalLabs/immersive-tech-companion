@@ -6,6 +6,8 @@ import { useTheme, createTheme, ThemeProvider } from "@mui/material/styles"
 import { validateEmail, authenticate, register } from "../lib/auth-service";
 import Cookies from 'js-cookie';
 
+// TODO: ADD Component for guest checkout
+
 const LOGIN_STATUS = {
   INVALID_CRED: 0,
   LOGGED_IN: 1
@@ -41,11 +43,11 @@ const LoginForm = () => {
     }
   }, [])
 
-  useEffect(() => {
-    if (isLoggedIn === LOGIN_STATUS.LOGGED_IN) {
-      router.push("/booking");
-    }
-  }, [isLoggedIn])
+  // useEffect(() => {
+  //   if (isLoggedIn === LOGIN_STATUS.LOGGED_IN) {
+  //     router.push("/booking");
+  //   }
+  // }, [isLoggedIn])
 
   const handleEmailValidation = async (email) => {
     const validStatus = await validateEmail(email);
