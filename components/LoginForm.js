@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Box, Button, TextField, CircularProgress } from '@mui/material';
 import { css } from "@emotion/react"
 import { useTheme, createTheme, ThemeProvider } from "@mui/material/styles"
-import { validateEmail, authenticate, register } from "../lib/auth-service";
+import { validateEmail, authenticate, register } from "../lib/services/auth-service";
 import Cookies from 'js-cookie';
 
 // TODO: ADD Component for guest checkout
@@ -18,7 +18,7 @@ const LoginForm = () => {
   const styles = {
     root: css`
         margin: 2rem auto 0 auto;
-        width: 30%;
+        width: 60%;
         background-color: ${theme.palette.primary.light}
       `
   }
