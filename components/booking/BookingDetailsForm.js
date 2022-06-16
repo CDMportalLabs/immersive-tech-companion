@@ -31,13 +31,13 @@ const BookingDetailsForm = (props) => {
             <Box sx={styles.imageCard}>Image placeholder</Box>
             <Grid container spacing={{ xs: 1, md: 2 }} direction="column" justifyContent="center" alignItems="flex-start" sx={styles.bookingDetails}>
                 <Grid container item xs="auto">
-                    <h3 style={{margin: "0"}}>Deep Signal</h3>
+                    <h3 style={{ margin: "0" }}>Deep Signal</h3>
                 </Grid>
                 <Grid container item xs="auto" direction="row" alignItems="center">
                     <Grid item xs="auto">
-                    <Avatar sx={{ color: "gray", bgcolor: "transparent" }}>
-                        <LocalAtmIcon />
-                    </Avatar>
+                        <Avatar sx={{ color: "gray", bgcolor: "transparent" }}>
+                            <LocalAtmIcon />
+                        </Avatar>
                     </Grid>
                     <Grid item xs="auto">
                         <span>$135</span>
@@ -45,19 +45,19 @@ const BookingDetailsForm = (props) => {
                 </Grid>
                 <Grid container item xs="auto" direction="row" alignItems="center">
                     <Grid item xs="auto">
-                    <Avatar sx={{ color: "gray", bgcolor: "transparent" }}>
-                        <LocationOnIcon />
-                    </Avatar>
+                        <Avatar sx={{ color: "gray", bgcolor: "transparent" }}>
+                            <LocationOnIcon />
+                        </Avatar>
                     </Grid>
                     <Grid item xs="auto">
-                    <span>Vancouver</span>
+                        <span>Vancouver</span>
                     </Grid>
                 </Grid>
                 <Grid container item xs="auto" direction="row" alignItems="center">
-                <Grid item xs="auto">
-                <Avatar sx={{ color: "gray", bgcolor: "transparent" }}>
-                        <AccessAlarmIcon />
-                    </Avatar>
+                    <Grid item xs="auto">
+                        <Avatar sx={{ color: "gray", bgcolor: "transparent" }}>
+                            <AccessAlarmIcon />
+                        </Avatar>
                     </Grid>
                     <Grid item xs="auto">
                         <span>{props.date}</span>

@@ -9,6 +9,7 @@ import { Box } from '@mui/system';
 import { firestore } from "../../firebase/clientApp";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { validateEmail } from "../../lib/helpers/input-validator";
+import Cookies from 'js-cookie';
 
 const INPUT_TYPES = {
     EMAIL: "email",
@@ -82,6 +83,8 @@ export default function BookingInfoPage() {
                 groupSize: groupSize
             }
         });
+        // log out of guest account
+        Cookies.remove("customerToken");
     }
 
     return (
@@ -97,7 +100,7 @@ export default function BookingInfoPage() {
             }}>
                 <ChevronLeftIcon />
             </IconButton>
-            <h1 style={{ textAlign: "center" }}>Confirm your booking</h1>
+            <h1 style={{ textAlign: "center", marginTop: "0" }}>Confirm your booking</h1>
             <BookingDetailsForm date={date} time={time} duration={duration} groupSize={groupSize} />
             <h3 style={{ textAlign: "center" }}>Book with your Contact Information</h3>
             <Grid container spacing={1} direction="column" justifyContent="center" alignItems="center">

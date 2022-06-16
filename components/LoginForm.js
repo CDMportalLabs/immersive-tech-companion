@@ -18,7 +18,7 @@ const LoginForm = () => {
   const styles = {
     root: css`
         margin: 2rem auto 0 auto;
-        width: 30%;
+        width: 60%;
         background-color: ${theme.palette.primary.light}
       `
   }
