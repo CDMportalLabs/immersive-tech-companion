@@ -4,10 +4,10 @@ import { TextField, Button, Grid } from "@mui/material";
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
-import { bookSession, checkAvailabilities } from "../../lib/booking-service";
+import { bookSession, checkAvailabilities } from "../../lib/services/booking-service";
 import moment from 'moment';
 
-export default function Home() {
+export default function BookingPage() {
     const router = useRouter();
 
     const [groupSize, setGroupSize] = useState(3);
@@ -41,9 +41,9 @@ export default function Home() {
 
     const handleBooking = async (time) => {
         // Use router query data to transfer booking details to confirmation page
-        await bookSession(date, groupSize, duration, time)
+        // await bookSession(date, groupSize, duration, time)
         router.push({
-            pathname: "/booking/success",
+            pathname: "/booking/info",
             query: {
                 date: date,
                 time: time,

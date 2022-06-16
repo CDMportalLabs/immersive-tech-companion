@@ -4,6 +4,8 @@ import { TextField, Button, Grid } from "@mui/material";
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
+import Link from 'next/link';
+import bgImage from '../lib/assets/play_bg.png';
 
 export default function Home() {
 
@@ -16,7 +18,14 @@ export default function Home() {
       </Head>
 
       <main>
-        Landing page
+        <Box style={{backgroundImage: `url(${bgImage.src})`, backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundAttachment: "scroll"}}>
+          <Box sx={{height: "60vh"}}></Box>
+          <h1 style={{ margin: "0 auto auto 5%", fontSize: "45px" }}>Hyper-</h1>
+          <h1 style={{ margin: "0 auto auto 5%", fontSize: "45px" }}>Immersive VR with Friends</h1>
+          <Link href="/booking">
+            <Button variant="contained" sx={{ bgcolor: "gray", margin: "5% auto auto 5%" }}>Book an Experience</Button>
+          </Link>
+        </Box>
       </main>
     </div>
   )
