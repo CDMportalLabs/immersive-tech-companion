@@ -50,7 +50,7 @@ const BookingConfirmation = ({ date, time }) => {
 			</Box>
 			<Box sx={{ margin: "auto 1rem" }}>
 				<h3>Thank you for booking!</h3>
-				<p>A confirmation email has been sent to your provided email.<br />Download your tickeet above and send it to the other players to get them prepared!</p>
+				<p>A confirmation email has been sent to your provided email.<br />Download your ticket above and send it to the other players to get them prepared!</p>
 			</Box>
 		</Box>
 	)
