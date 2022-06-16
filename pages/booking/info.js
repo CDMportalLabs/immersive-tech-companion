@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BookingContactForm from "../../components/booking/BookingContactForm";
 import { useRouter } from "next/router";
-import { Button, TextField, Grid, IconButton } from "@mui/material";
+import { Button, TextField, Grid, IconButton, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import BookingDetailsForm from "../../components/booking/BookingDetailsForm";
 import { css } from "@emotion/react"
 import { bookSession } from "../../lib/services/booking-service";
@@ -39,6 +39,7 @@ export default function BookingInfoPage() {
         firstName: null,
         lastName: null
     })
+    const [isAgreementChecked, setAgreementChecked] = useState(false);
 
     const handleContactInfoChange = (e) => {
         const { name, value } = e.target;
@@ -49,11 +50,11 @@ export default function BookingInfoPage() {
     const validateContactInputs = (name, value) => {
         switch (name) {
             case INPUT_TYPES.EMAIL:
-                setValidInputs(input => ({...input, [name]: validateEmail(value) === true}));
+                setValidInputs(input => ({ ...input, [name]: validateEmail(value) === true }));
                 break;
             case INPUT_TYPES.FIRST_NAME:
             case INPUT_TYPES.LAST_NAME:
-                setValidInputs(input => ({...input, [name]: value !== ""}));
+                setValidInputs(input => ({ ...input, [name]: value !== "" }));
                 break;
             default:
                 break;
@@ -99,7 +100,7 @@ export default function BookingInfoPage() {
             <h1 style={{ textAlign: "center" }}>Confirm your booking</h1>
             <BookingDetailsForm date={date} time={time} duration={duration} groupSize={groupSize} />
             <h3 style={{ textAlign: "center" }}>Book with your Contact Information</h3>
-            <Grid container spacing={0} direction="column" justifyContent="center" alignItems="center">
+            <Grid container spacing={1} direction="column" justifyContent="center" alignItems="center">
                 <Grid item xs="auto">
                     <TextField
                         required
@@ -130,10 +131,14 @@ export default function BookingInfoPage() {
                         error={isValidInputs.email === false}
                     />
                 </Grid>
+                <Grid item xs="auto" >
+                    <FormControlLabel control={<Checkbox checked={isAgreementChecked} onChange={(e) => setAgreementChecked(e.target.checked)} />} label="I agree to the Terms of Use" />
+                </Grid>
             </Grid>
-            <Button sx={styles.bookingButton}
+            <Button
+                sx={styles.bookingButton}
                 onClick={() => handleBooking()}
-                disabled={Object.values(isValidInputs).includes(false) || Object.values(isValidInputs).includes(null)}
+                disabled={Object.values(isValidInputs).includes(false) || Object.values(isValidInputs).includes(null) || isAgreementChecked === false}
             >Book your experience</Button>
         </Box>
     )
