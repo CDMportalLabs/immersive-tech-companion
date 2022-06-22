@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BookingContactForm from "../../components/booking/BookingContactForm";
 import { useRouter } from "next/router";
-import { Button, TextField, Grid, IconButton, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
+import { Button, TextField, Grid, IconButton, FormGroup, FormControlLabel, Checkbox, CircularProgress } from "@mui/material";
 import BookingDetailsForm from "../../components/booking/BookingDetailsForm";
 import { css } from "@emotion/react"
 import { bookSession } from "../../lib/services/booking-service";
@@ -25,6 +25,7 @@ export default function BookingInfoPage() {
     }
     const router = useRouter();
     const { date, groupSize, duration, time } = router.query;
+    const [loading, setLoading] = useState(false);
     const [contactInfo, setContactInfo] = useState({
         email: "",
         firstName: "",
@@ -59,6 +60,7 @@ export default function BookingInfoPage() {
 
 
     const handleBooking = async () => {
+        setLoading(true);
         // Use router query data to transfer booking details to confirmation page
         await bookSession(date, groupSize, duration, time);
         // Integrating firestore database
@@ -68,7 +70,9 @@ export default function BookingInfoPage() {
             time: time,
             duration: duration,
             groupSize: groupSize
-        })
+        });
+        setLoading(false);
+
         router.push({
             pathname: "/booking/success",
             query: {
@@ -97,7 +101,7 @@ export default function BookingInfoPage() {
             </IconButton>
             <h1 style={{ textAlign: "center", marginTop: "0" }}>Confirm your booking</h1>
             <BookingDetailsForm date={date} time={time} duration={duration} groupSize={groupSize} />
-            <h3 style={{ textAlign: "center" }}>Book with your Contact Information</h3>
+            <h3 style={{ textAlign: "center" }}>Enter Your Info</h3>
             <Grid container spacing={1} direction="column" justifyContent="center" alignItems="center">
                 <Grid item xs="auto">
                     <TextField
@@ -137,10 +141,12 @@ export default function BookingInfoPage() {
                 </Grid>
             </Grid>
             <Button
+                variant="contained"
                 sx={styles.bookingButton}
                 onClick={() => handleBooking()}
                 disabled={Object.values(isValidInputs).includes(false) || Object.values(isValidInputs).includes(null) || isAgreementChecked === false}
-            >Book your experience</Button>
+            >{loading ? <CircularProgress sx={{ width: "60%", color: "white" }} /> : null}
+                Book your experience</Button>
         </Box>
     )
 }

@@ -8,6 +8,7 @@ import bgImage from '../lib/assets/play_bg.png';
 import { INPUT_TYPES } from "../lib/constants/input-types";
 import { validateEmailInput, validatePasswordInput } from "../lib/helpers/input-validator";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { firestore } from "../firebase/clientApp";
 
 const REGISTER_STATUS = {
     INVALID_EMAIL: 0,
@@ -64,14 +65,6 @@ const SignupForm = (props) => {
         }
     }
 
-    // useEffect(async () => {
-    //     const customerToken = Cookies.get("customerToken");
-    //     //console.log(customerToken);
-    //     if (!!customerToken) {
-    //         setLoggedIn(LOGIN_STATUS.LOGGED_IN);
-    //     }
-    // }, [])
-
     useEffect(() => {
       if (isRegistered === REGISTER_STATUS.REGISTER_SUCCESS) {
         props.handleLoginOpen(true);
@@ -86,8 +79,11 @@ const SignupForm = (props) => {
             setRegistration(0);
             return;
         } else {
-            const userInfo = await register(userProfile);
-            if (userInfo) {
+            const resp = await register(userProfile);
+            const {password, ...userInfo} = userProfile;
+            // create a new user in firestore users collection
+            await firestore.collection("users").doc().set(userInfo);
+            if (resp) {
                 setLoading(false);
                 setRegistration(1);
             }
@@ -161,13 +157,6 @@ const SignupForm = (props) => {
                         />
                     </Grid>
                     <Grid item sx={{ width: "100%" }}>
-                        {/* <TextField
-                            required
-                            id="outlined-required"
-                            label="Password(at least 6 characters)"
-                            onChange={(e) => setPassword(e.target.value)}
-                            fullWidth
-                        /> */}
                         <TextField
                             required
                             id="outlined-adornment-password"
@@ -195,10 +184,12 @@ const SignupForm = (props) => {
                     <Grid item xs="auto" >
                         <FormControlLabel control={<Checkbox checked={isAgreementChecked} onChange={(e) => setAgreementChecked(e.target.checked)} />} label="I agree to the Terms of Use" />
                     </Grid>
-                    <Button sx={{ margin: "0.5rem auto" }}
+                    <Button
+                        variant="contained"
+                        sx={{ margin: "0.5rem auto" }}
                         onClick={() => handleRegister()}
                         disabled={Object.values(isValidInputs).includes(false) || Object.values(isValidInputs).includes(null) || isAgreementChecked === false}
-                    >{loading ? <CircularProgress sx={{ width: "60%" }} /> : null}
+                    >{loading ? <CircularProgress sx={{ width: "60%", color: "white" }} /> : null}
                         Sign Up</Button>
                 </Grid>
             </form>
