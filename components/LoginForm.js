@@ -3,11 +3,9 @@ import { useRouter } from 'next/router';
 import { Box, Button, TextField, CircularProgress, Grid, FormControlLabel, Checkbox } from '@mui/material';
 import { css } from "@emotion/react"
 import { useTheme, createTheme, ThemeProvider } from "@mui/material/styles";
-import { validateEmail, authenticate, register } from "../lib/services/auth-service";
+import { authenticate } from "../lib/services/auth-service";
 import Cookies from 'js-cookie';
 import bgImage from '../lib/assets/play_bg.png';
-
-// TODO: ADD Component for guest checkout
 
 const LOGIN_STATUS = {
   INVALID_CRED: 0,
@@ -130,40 +128,6 @@ const LoginStatusBanner = ({ status }) => {
       );
     default:
       return null;
-  }
-}
-
-const ButtonComponent = (props) => {
-  const theme = useTheme()
-  const styles = {
-    loginButton: css`
-        color: black
-    `,
-    logOutButton: css`
-        color: black;
-        background-color: ${theme.palette.error.light}
-    `
-  }
-
-  if (props.isEmailValid !== false) {
-    if (props.loginStatus === LOGIN_STATUS.LOGGED_IN) return (
-      <Button sx={styles.logOutButton}
-        onClick={() => props.handleLogOut()}
-      >Logout</Button>
-    );
-    else return (
-      <Button sx={styles.loginButton}
-        onClick={() => props.handleLogin()}
-      >{props.loading ? <CircularProgress sx={{ width: "60%" }} /> : null}
-        Login</Button>
-    )
-  } else {
-    return (
-      <Button sx={styles.loginButton}
-        onClick={() => props.handleRegister()}
-      >{props.loading ? <CircularProgress sx={{ width: "60%" }} /> : null}
-        Register</Button>
-    )
   }
 }
 
