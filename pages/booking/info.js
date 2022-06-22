@@ -8,14 +8,9 @@ import { bookSession } from "../../lib/services/booking-service";
 import { Box } from '@mui/system';
 import { firestore } from "../../firebase/clientApp";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { validateEmail } from "../../lib/helpers/input-validator";
+import { validateEmailInput } from "../../lib/helpers/input-validator";
 import Cookies from 'js-cookie';
-
-const INPUT_TYPES = {
-    EMAIL: "email",
-    FIRST_NAME: "firstName",
-    LAST_NAME: "lastName"
-}
+import { INPUT_TYPES } from "../../lib/constants/input-types";
 
 export default function BookingInfoPage() {
     const styles = {
@@ -51,7 +46,7 @@ export default function BookingInfoPage() {
     const validateContactInputs = (name, value) => {
         switch (name) {
             case INPUT_TYPES.EMAIL:
-                setValidInputs(input => ({ ...input, [name]: validateEmail(value) === true }));
+                setValidInputs(input => ({ ...input, [name]: validateEmailInput(value) === true }));
                 break;
             case INPUT_TYPES.FIRST_NAME:
             case INPUT_TYPES.LAST_NAME:
@@ -112,6 +107,7 @@ export default function BookingInfoPage() {
                         label="First Name"
                         onChange={handleContactInfoChange}
                         error={isValidInputs.firstName === false}
+                        fullWidth
                     />
                 </Grid>
                 <Grid item xs="auto">
@@ -122,6 +118,7 @@ export default function BookingInfoPage() {
                         label="Last Name"
                         onChange={handleContactInfoChange}
                         error={isValidInputs.lastName === false}
+                        fullWidth
                     />
                 </Grid>
                 <Grid item xs="auto">
@@ -132,6 +129,7 @@ export default function BookingInfoPage() {
                         label="Email"
                         onChange={handleContactInfoChange}
                         error={isValidInputs.email === false}
+                        fullWidth
                     />
                 </Grid>
                 <Grid item xs="auto" >
