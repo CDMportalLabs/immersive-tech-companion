@@ -10,7 +10,7 @@ export default function BookingConfirmationPage() {
     return (
         <Box>
             <BookingConfirmation date={query.date} time={query.time}/>
-            <Link href="/login">
+            <Link href="/sign-up">
                 <Button sx={{margin: "0 auto", display: "block"}}>Sign up for an account with us!</Button>
             </Link>
         </Box>
