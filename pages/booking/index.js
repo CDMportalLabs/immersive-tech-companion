@@ -1,13 +1,145 @@
 import React, { useState, useEffect } from "react";
-import Box from '@mui/material/Box';
-import { TextField, Button, Grid } from "@mui/material";
+import { Box } from '@mui/system';
+import { TextField, Button, Grid} from "@mui/material";
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Cookies from 'js-cookie';
 import { bookSession, checkAvailabilities } from "../../lib/services/booking-service";
 import moment from 'moment';
+import { css } from "@emotion/react"
+import LocationCard from "../../components/LocationCard";
+import GameCard from "../../components/GameCard";
+import Calendar from "../../components/Calendar";
 
-export default function BookingPage() {
+
+export default function NewBookingPage() {
+    
+    const styles = {
+        root: css`
+            margin: 2rem auto 0 auto;
+          `,
+        grid: css`
+            margin: 2rem auto 0 auto;
+          `,
+        bookingButton: css`
+            margin: 0 auto;
+            display: block;
+            textAlign: center;
+            color: white;
+            background-color: gray;
+        `
+          
+        
+    }
+    const router = useRouter()
+    
+    const [groupSize, setGroupSize] = useState(3);
+    // const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
+    const [date, setDate] = useState("");
+    const [duration, setDuration] = useState(60);
+    const [availabilities, setAvailabilities] = useState([]);
+    const [location, setLocation] = useState('');
+    const [game, setGame] = useState('');
+    const [currState, setCurrState] = useState('location');
+    
+    if (currState === 'location') {
+        // TODO: Make a loop on a list of props to generate the cards
+        return (
+            <Box sx={styles.root}>
+            <Grid container
+                spacing={1}
+                direction='column'
+                justifyContent="center" 
+                alignItems="center">
+                <Grid item xs='auto'>
+                    <h3 style={{fontSize: "40px", margin: "0"}}>Select a Location</h3>
+                </Grid>
+                <Grid item xs='auto'>
+                    <Button 
+                        onClick={() => {
+                        setLocation('Vancouver')
+                        }}> <LocationCard location='Vancouver'
+                            address1='4077 Kingsway, Burnaby'
+                            address2='Richmond, V5H1Y9'
+                            img=''
+                            isSelected={location === 'Vancouver'}/>
+                    </Button>
+                </Grid>
+                <Grid item xs='auto'>
+                    <Button 
+                        onClick={() => {
+                        setLocation('Toronto')
+                        }}> <LocationCard location='Toronto'
+                            address1='4077 Kingsway, Burnaby'
+                            address2='Richmond, V5H1Y9'
+                            img=''
+                            isSelected={false}/>
+                    </Button>
+                </Grid>
+                <Grid item xs='auto'>
+                    <Button 
+                        onClick={() => {
+                        setLocation('New york')
+                        }}> <LocationCard location='New york'
+                            address1='4077 Kingsway, Burnaby'
+                            address2='Richmond, V5H1Y9'
+                            img=''
+                            isSelected={false}/>
+                    </Button>
+                </Grid>
+                <Grid item xs='auto'>
+                <Button
+                    variant="contained"
+                    onClick={() => {setCurrState('game')}}
+                    disabled={location == ''}
+                    sx={styles.bookingButton}>Select the location</Button>
+                </Grid>
+            </Grid>
+            </Box>
+        
+        )
+    }
+    else if (currState === 'game') {
+        return(
+             <Box sx={styles.root}>
+              <Grid container
+                spacing={1}
+                direction='column'
+                justifyContent="center" 
+                alignItems="center">
+                    <Grid item xs='auto'>
+                        <h3 style={{fontSize: "30px", margin: "0"}}>Select a Game</h3>
+                    </Grid>
+                    <Grid item xs='auto'>
+                        <Button
+                            onClick={() => {setGame("Deep Signal") }}>
+                        <GameCard title="Deep Signal" 
+                                  numOfPlayers="3"
+                                  duration="30"
+                                  introduction="Deeep deeep signal"/>
+                        </Button>
+                    </Grid>
+                    <Grid item xs='auto'>
+                    <Button
+                        variant="contained"
+                        onClick={() => {setCurrState('calendar')}}
+                        disabled={game == ''}
+                        sx={styles.bookingButton}>Select the game</Button>
+                    </Grid>
+                </Grid>
+             </Box>
+        )
+    }
+    else {
+        return (
+         <Box sx={styles.root}> 
+                <Calendar dateFunc={setDate} />
+                <h1> {date}</h1>
+       </Box>)
+    }
+}
+
+
+function BookingPage() {
     const router = useRouter();
 
     const [groupSize, setGroupSize] = useState(3);
