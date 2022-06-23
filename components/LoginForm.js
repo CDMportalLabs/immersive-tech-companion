@@ -15,10 +15,15 @@ const LOGIN_STATUS = {
 const LoginForm = (props) => {
   const theme = useTheme()
   const styles = {
-    root: css`
-        margin: 2rem auto 0 auto;
-        width: 60%;
-        background-color: ${theme.palette.primary.light}
+      loginButton: css`
+      width: 60%;
+      margin: auto;
+      background-color: ${theme.palette.primary.main}
+      `,
+      logOutButton: css`
+      width: 60%;
+      margin: auto;
+      background-color: red
       `
   }
 
@@ -101,12 +106,12 @@ const LoginForm = (props) => {
           />
           <FormControlLabel control={<Checkbox checked={isRememberMeChecked} onChange={(e) => setRememberMeChecked(e.target.checked)} />} label="Remember me" />
           {
-            isLoggedIn !== LOGIN_STATUS.LOGGED_IN ? <Button sx={styles.loginButton}
+            isLoggedIn !== LOGIN_STATUS.LOGGED_IN ? <Button variant="contained" sx={styles.loginButton}
               onClick={handleLogin}
-            >{loading ? <CircularProgress sx={{ width: "60%" }} /> : null}
+            >{loading ? <CircularProgress sx={{ width: "60%", color: "white" }}/> : null}
               Login</Button>
               :
-              <Button sx={styles.logOutButton}
+              <Button variant="contained" sx={styles.logOutButton}
                 onClick={handleLogOut}
               >Logout</Button>
           }
