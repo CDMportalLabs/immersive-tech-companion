@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import Box from '@mui/material/Box';
 import { TextField, Button, Grid } from "@mui/material";
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import Cookies from 'js-cookie';
 import Link from 'next/link';
 import bgImage from '../lib/assets/play_bg.png';
 
@@ -23,7 +21,7 @@ export default function Home() {
           <h1 style={{ margin: "0 auto auto 5%", fontSize: "45px" }}>Hyper-</h1>
           <h1 style={{ margin: "0 auto auto 5%", fontSize: "45px" }}>Immersive VR with Friends</h1>
           <Link href="/booking">
-            <Button variant="contained" sx={{ bgcolor: "gray", margin: "5% auto auto 5%" }}>Book an Experience</Button>
+            <Button variant="contained" sx={{ margin: "5% auto auto 5%" }}>Book an Experience</Button>
           </Link>
         </Box>
       </main>
