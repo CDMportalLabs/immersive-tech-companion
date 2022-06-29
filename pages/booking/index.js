@@ -283,9 +283,11 @@ export default function NewBookingPage() {
                                         <TextField {...endProps} />
                                     </React.Fragment>
                                 )}
-                                onChange={(newValue) => {
+                                onChange = {(newValue) => {
+                                    console.log('newValue is:', newValue);
+                                    console.log('old value is:', date);
                                     setDate(newValue);
-                                    setDateStr(moment(date).format('YYYY-MM-DD'));
+                                    setDateStr(moment(newValue).format('YYYY-MM-DD'));
                                     console.log(dateStr);
                                     handleSearchAvabilities();
                                     setTimeVisible(true);
