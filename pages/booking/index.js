@@ -28,7 +28,7 @@ export default function NewBookingPage() {
             margin: 2rem auto 0 auto;
           `,
         locationButton: css`
-            margin: 8rem 2rem 0 auto;
+            margin: 7rem 2rem 0 auto;
             display: block;
             textAlign: center;
             color: white;
@@ -80,7 +80,7 @@ export default function NewBookingPage() {
         setAvailabilities(availableTimes);
         setTimeVisible(true);
         return;
-    }, [dateStr])
+    }, [dateStr, groupSize, duration]);
 
     const handleBooking = () => {
         // Use router query data to transfer booking details to confirmation page
@@ -100,70 +100,68 @@ export default function NewBookingPage() {
 
     if (currState === 'location') {
         return (
-            <Box css={styles.root}>
-                <Grid container
-                    spacing={2}
-                    direction='column'
-                    justifyContent="center"
-                    alignItems="center"
-                    margin="2rem auto 0 auto">
-                    <Grid item>
-                        <h3 style={{ fontSize: "40px", margin: "0", marginRight: "2rem" }}>Select a Location</h3>
-                    </Grid>
-                    <Grid item xs='auto' marginRight="2rem">
-                        <Button
-                            onClick={() => {
-                                setLocation('Vancouver')
-                            }}>
-                            <LocationCard location='Vancouver'
-                                address1='4077 Kingsway, Burnaby'
-                                address2='Richmond, V5H1Y9'
-                                img=''
-                                isSelected={location === 'Vancouver'} />
-                        </Button>
-                    </Grid>
-                    <Grid item xs='auto' marginRight="2rem">
-                        <Button
-                            onClick={() => {
-                                setLocation('Toronto')
-                            }}> <LocationCard location='Toronto'
-                                address1='4077 Kingsway, Burnaby'
-                                address2='Richmond, V5H1Y9'
-                                img=''
-                                isSelected={location === 'Toronto'} />
-                        </Button>
-                    </Grid>
-                    <Grid item xs='auto' marginRight="2rem">
-                        <Button
-                            onClick={() => {
-                                setLocation('New york')
-                            }}> <LocationCard location='New york'
-                                address1='4077 Kingsway, Burnaby'
-                                address2='Richmond, V5H1Y9'
-                                img=''
-                                isSelected={location === "New york"} />
-                        </Button>
-                    </Grid>
-                    <Grid item xs='auto'>
-                        <Button
-                            variant="contained"
-                            onClick={() => { setCurrState('game') }}
-                            disabled={location == ''}
-                            sx={styles.locationButton}>Select the location</Button>
-                    </Grid>
+        <Box sx={styles.root}>
+            <Grid container
+                spacing={2}
+                direction='column'
+                justifyContent="center" 
+                alignItems="center"
+                margin="2rem auto 0 auto">
+                <Grid item>
+                   <h3 style={{fontSize: "40px", margin: "0", marginRight:"2rem"}}>Select a Location</h3>
+                </Grid>
+                <Grid item xs='auto' marginRight="2rem">
+                    <Button 
+                        onClick={() => {
+                                setLocation('Vancouver')}}> 
+                        <LocationCard location='Vancouver'
+                            address1='4077 Kingsway, Burnaby'
+                            address2='Richmond, V5H1Y9'
+                            img=''
+                            isSelected={location === 'Vancouver'}/>
+                    </Button>
+                </Grid>
+                <Grid item xs='auto' marginRight="2rem">
+                    <Button 
+                        onClick={() => {
+                        setLocation('Toronto')
+                        }}> <LocationCard location='Toronto'
+                            address1='4077 Kingsway, Burnaby'
+                            address2='Richmond, V5H1Y9'
+                            img=''
+                            isSelected={location === 'Toronto'}/>
+                    </Button>
+                </Grid>
+                <Grid item xs='auto' marginRight="2rem">
+                    <Button 
+                        onClick={() => {
+                        setLocation('New york')
+                        }}> <LocationCard location='New york'
+                            address1='4077 Kingsway, Burnaby'
+                            address2='Richmond, V5H1Y9'
+                            img=''
+                            isSelected={location === "New york"}/>
+                    </Button>
+                </Grid>
+                <Grid item xs='auto'>
+                <Button
+                    variant="contained"
+                    onClick={() => {setCurrState('game')}}
+                    disabled={location == ''}
+                    sx={styles.locationButton}>Select the location</Button>
                 </Grid>
             </Box>
         )
     }
     else if (currState === 'game') {
-        return (
-            <Box css={styles.root}>
-                <Grid container
-                    spacing={2}
-                    direction='column'
-                    justifyContent="center"
-                    alignItems="center"
-                    margin="2rem auto 0 auto">
+        return(
+            <Box sx={styles.root}>
+              <Grid container
+                spacing={2}
+                direction='column'
+                justifyContent="center" 
+                alignItems="center"
+                margin="2rem auto 0 auto">
                     <Grid item container direction='row' xs='auto'>
                         <IconButton
                             onClick={() => {
@@ -270,7 +268,9 @@ export default function NewBookingPage() {
                                         <TextField {...endProps} />
                                     </React.Fragment>
                                 )}
-                                onChange={async (newValue) => {
+                                onChange = {(newValue) => {
+                                    console.log('newValue is:', newValue);
+                                    console.log('old value is:', date);
                                     setDate(newValue);
                                     setDateStr(moment(newValue).format('YYYY-MM-DD'));
                                     console.log(dateStr);
