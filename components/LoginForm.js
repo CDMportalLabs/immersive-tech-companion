@@ -45,11 +45,11 @@ const LoginForm = (props) => {
     }
   }, [])
 
-  // useEffect(() => {
-  //   if (isLoggedIn === LOGIN_STATUS.LOGGED_IN) {
-  //     router.push("/profile");
-  //   }
-  // }, [isLoggedIn])
+  useEffect(() => {
+    if (isLoggedIn === LOGIN_STATUS.LOGGED_IN) {
+      router.push("/profile");
+    }
+  }, [isLoggedIn])
 
   const handleLogin = async () => {
     setLoading(true);
