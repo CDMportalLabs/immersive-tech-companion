@@ -150,6 +150,7 @@ export default function NewBookingPage() {
                     disabled={location == ''}
                     sx={styles.locationButton}>Select the location</Button>
                 </Grid>
+            </Grid>
             </Box>
         )
     }
