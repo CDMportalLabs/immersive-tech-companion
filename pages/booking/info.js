@@ -24,7 +24,7 @@ export default function BookingInfoPage() {
         `
     }
     const router = useRouter();
-    const { date, groupSize, duration, time } = router.query;
+    const { date, groupSize, duration, time, location, game } = router.query;
     const [loading, setLoading] = useState(false);
     const [contactInfo, setContactInfo] = useState({
         email: "",
@@ -64,12 +64,14 @@ export default function BookingInfoPage() {
         // Use router query data to transfer booking details to confirmation page
         await bookSession(date, groupSize, duration, time);
         // Integrating firestore database
-        await firestore.collection("sessions").doc().set({
+        await firestore.collection("bookings").doc().set({
             ...contactInfo,
             date: date,
             time: time,
             duration: duration,
-            groupSize: groupSize
+            groupSize: groupSize,
+            location: location,
+            game: game
         });
         setLoading(false);
 
@@ -79,7 +81,9 @@ export default function BookingInfoPage() {
                 date: date,
                 time: time,
                 duration: duration,
-                groupSize: groupSize
+                groupSize: groupSize,
+                location: location,
+                game: game
             }
         });
         // log out of guest account
@@ -88,7 +92,7 @@ export default function BookingInfoPage() {
 
     return (
         <Box sx={styles.root}>
-            <IconButton onClick={() => {
+            {/* <IconButton onClick={() => {
                 router.replace({
                     pathname: "/booking",
                     shallow: true,
@@ -98,7 +102,7 @@ export default function BookingInfoPage() {
                 })
             }}>
                 <ChevronLeftIcon />
-            </IconButton>
+            </IconButton> */}
             <h1 style={{ textAlign: "center", marginTop: "0" }}>Confirm your booking</h1>
             <BookingDetailsForm date={date} time={time} duration={duration} groupSize={groupSize} />
             <h3 style={{ textAlign: "center" }}>Enter Your Info</h3>
