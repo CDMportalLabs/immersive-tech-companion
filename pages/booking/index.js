@@ -87,7 +87,7 @@ export default function NewBookingPage() {
         }
     }
     
-      useEffect(() => {
+      useEffect((props) => {
             checkAvailabilities(dateStr, groupSize, duration)
             .then((resp) => {
                 //console.log(resp);
@@ -95,7 +95,7 @@ export default function NewBookingPage() {
                 setAvailabilities(availableTimes);
             })
         return;
-    }, [])
+    }, [dateStr, groupSize, duration]);
 
     const handleBooking = () => {
         // Use router query data to transfer booking details to confirmation page
