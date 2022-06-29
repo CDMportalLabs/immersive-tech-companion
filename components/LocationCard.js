@@ -6,31 +6,25 @@ export default function LocationCard(props) {
   const { location, address1, address2, img, isSelected} = props;
   const styles = {
         root: css`
-            margin: 2rem auto;
+            margin: 1rem auto;
             width: 90%;
             display: flex;
           `,
         card: css`
-            margin: auto 1rem;
-            width: 35rem;
+            width: 24rem;
             height: 10rem;
         `
         ,
         imageCard: css`
-            margin: auto 1rem;
-            width: 8rem;
-            height: 8rem;
+            margin: 1.5rem 1rem;
+            width: 7rem;
+            height: 7rem;
             background-color: gray;
         `,
-        
-        grid: css`
-            margin: auto;
-        `
     }
   
   return (
     
-    <Box sx={styles.root}>
     <Card sx={styles.card}> 
       <Grid container spacing={{ xs: 1, md: 2 }} direction = 'row' justifyContent="flex-start" alignItems="center">
           <Grid item>
@@ -38,18 +32,17 @@ export default function LocationCard(props) {
             </Grid>
           <Grid item container xs="auto" direction="column" justifyContent="center" alignItems="flex-start">
           <Grid item xs="auto">
-              <h2 style={{fontSize: "20px", margin: "0" }}>{props.location}</h2>
+              <h2 style={{fontSize: "15px", margin: "0" }}>{props.location}</h2>
           </Grid>    
           <Grid item xs="auto">
-            <box style={{ fontSize: "20px", margin: "0" }}>{props.address1}</box>
+            <box style={{ fontSize: "15px", margin: "0" }}>{props.address1}</box>
           </Grid>  
           <Grid item xs="auto">
-              <box style={{fontSize: "20px", margin: "0" }}>{props.address2}</box>
+              <box style={{fontSize: "15px", margin: "0" }}>{props.address2}</box>
           </Grid>  
           </Grid> 
       </Grid>
     </Card>
-    </Box>
     
   )
   
