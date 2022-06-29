@@ -107,7 +107,8 @@ export default function NewBookingPage() {
                 time: time,
                 duration: duration,
                 groupSize: groupSize,
-                location: location
+                location: location,
+                game: game
             }
         });
     }
