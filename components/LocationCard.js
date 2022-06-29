@@ -35,10 +35,10 @@ export default function LocationCard(props) {
               <h2 style={{fontSize: "15px", margin: "0" }}>{props.location}</h2>
           </Grid>    
           <Grid item xs="auto">
-            <box style={{ fontSize: "15px", margin: "0" }}>{props.address1}</box>
+            <Box style={{ fontSize: "15px", margin: "0" }}>{props.address1}</Box>
           </Grid>  
           <Grid item xs="auto">
-              <box style={{fontSize: "15px", margin: "0" }}>{props.address2}</box>
+              <Box style={{fontSize: "15px", margin: "0" }}>{props.address2}</Box>
           </Grid>  
           </Grid> 
       </Grid>

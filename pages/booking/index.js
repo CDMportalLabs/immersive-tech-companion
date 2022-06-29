@@ -23,6 +23,7 @@ export default function NewBookingPage() {
     const styles = {
         root: css`
             background-color: #FAF9F6;
+            margin: 0 0 0 0;
           `,
         grid: css`
             margin: 2rem auto 0 auto;
@@ -114,7 +115,7 @@ export default function NewBookingPage() {
     
     if (currState === 'location') {
         return (
-        <Box css={styles.root}>
+        <Box sx={styles.root}>
             <Grid container
                 spacing={2}
                 direction='column'
@@ -170,7 +171,7 @@ export default function NewBookingPage() {
     }
     else if (currState === 'game') {
         return(
-            <Box css={styles.root}>
+            <Box sx={styles.root}>
               <Grid container
                 spacing={2}
                 direction='column'
