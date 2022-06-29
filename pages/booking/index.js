@@ -23,13 +23,12 @@ export default function NewBookingPage() {
     const styles = {
         root: css`
             background-color: #FAF9F6;
-            margin: 0 0 0 0;
           `,
         grid: css`
             margin: 2rem auto 0 auto;
           `,
         locationButton: css`
-            margin: 8rem 2rem 0 auto;
+            margin: 7rem 2rem 0 auto;
             display: block;
             textAlign: center;
             color: white;
@@ -88,7 +87,7 @@ export default function NewBookingPage() {
         }
     }
     
-      useEffect((props) => {
+      useEffect(() => {
             checkAvailabilities(dateStr, groupSize, duration)
             .then((resp) => {
                 //console.log(resp);
