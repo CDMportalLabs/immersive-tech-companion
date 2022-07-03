@@ -5,6 +5,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { Box } from '@mui/system';
 import { Avatar, TextField, Button, MenuItem, Grid, IconButton } from "@mui/material";
+import moment from 'moment';
 
 export default function Calendar({ availabilities, date, timeVisible, setDate, setDateStr, setTime }) {
 
