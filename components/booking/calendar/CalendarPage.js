@@ -5,6 +5,7 @@ import { Avatar, TextField, Button, MenuItem, Grid, IconButton } from "@mui/mate
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { checkAvailabilities } from "../../../lib/services/booking-service";
 import moment from 'moment';
+import { useRouter } from 'next/router';
 import Calendar from "./Calendar";
 
 const CalendarPage = ({ date, dateStr, time, setDate, setDateStr, setTime, setGame, setCurrState, handleBooking }) => {
@@ -18,6 +19,7 @@ const CalendarPage = ({ date, dateStr, time, setDate, setDateStr, setTime, setGa
             height: 3rem;
         `
     }
+    const router = useRouter();
     const groupSize = 3;
     const duration = 15;
     const [timeVisible, setTimeVisible] = useState(false);
