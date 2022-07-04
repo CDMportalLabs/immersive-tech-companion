@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import React, { useState, useEffect } from "react";
 import { Box } from '@mui/system';
-import { Avatar, TextField, Button, MenuItem, Grid, List, ListItemButton } from "@mui/material";
+import { Avatar, TextField, Button, MenuItem, Grid, List, ListItem, ListItemButton } from "@mui/material";
 import LocationCard from './LocationCard';
 import { useTheme } from "@mui/material/styles";
 
@@ -12,8 +12,17 @@ const LocationPage = ({ location, setLocation, setCurrState }) => {
         root: css`
             background-color: #FAF9F6;
           `,
+        list: css`
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        `,
+        listItemButton: css`
+            margin: auto;
+            &.Mui-selected {border: 2px solid ${theme.palette.primary.main}}
+        `,
         locationButton: css`
-            margin: auto 2rem 0 auto;
+            margin: auto;
             display: block;
             textAlign: center;
             color: white;
@@ -24,9 +33,11 @@ const LocationPage = ({ location, setLocation, setCurrState }) => {
 
     return (
         <Box sx={styles.root}>
-            <h3 style={{ fontSize: "40px", marginLeft: "2rem" }}>Select a Location</h3>
-            <List>
-                <ListItemButton selected={location === 'Vancouver'} sx={{"&.Mui-selected": {border: `2px solid ${theme.palette.primary.main}`}}} alignItems="flex-start" onClick={() => {
+            <List sx={styles.list}>
+                <ListItem alignItems="center">
+                    <h3 style={{ fontSize: "40px", margin: "1rem auto" }}>Select a Location</h3>
+                </ListItem>
+                <ListItemButton selected={location === 'Vancouver'} sx={styles.listItemButton} alignItems="center" onClick={() => {
                     setLocation('Vancouver')
                 }}>
                     <LocationCard location='Vancouver'
@@ -35,7 +46,7 @@ const LocationPage = ({ location, setLocation, setCurrState }) => {
                         img=''
                         isSelected={location === 'Vancouver'} />
                 </ListItemButton>
-                <ListItemButton alignItems="flex-start" selected={location === 'Toronto'} sx={{"&.Mui-selected": {border: `2px solid ${theme.palette.primary.main}`}}} onClick={() => {
+                <ListItemButton alignItems="center" selected={location === 'Toronto'} sx={styles.listItemButton} onClick={() => {
                     setLocation('Toronto')
                 }}>
                     <LocationCard location='Toronto'
@@ -44,7 +55,7 @@ const LocationPage = ({ location, setLocation, setCurrState }) => {
                         img=''
                         isSelected={location === 'Toronto'} />
                 </ListItemButton>
-                <ListItemButton alignItems="flex-start" selected={location === 'New York'} sx={{"&.Mui-selected": {border: `2px solid ${theme.palette.primary.main}`}}} onClick={() => {
+                <ListItemButton alignItems="center" selected={location === 'New York'} sx={styles.listItemButton} onClick={() => {
                     setLocation('New York')
                 }}>
                     <LocationCard location='New York'
