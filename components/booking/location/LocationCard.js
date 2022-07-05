@@ -11,8 +11,11 @@ export default function LocationCard(props) {
             display: flex;
           `,
         card: css`
+            margin: 0;
             width: 24rem;
             height: 10rem;
+            box-shadow: 0px 7px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
         `,
         imageCard: css`
             margin: 1.5rem 1rem;

@@ -18,11 +18,16 @@ const LocationPage = ({ location, setLocation, setCurrState }) => {
             justify-content: center;
         `,
         listItemButton: css`
-            margin: auto;
-            &.Mui-selected {border: 2px solid ${theme.palette.primary.main}}
+            padding: 0;
+            margin: 1rem auto;
+            border-radius: 16px;
+            &.Mui-selected {
+                box-shadow: 0px 7px 40px rgba(255, 0, 74, 0.1);
+                border: 1px solid ${theme.palette.primary.main}
+            }
         `,
         locationButton: css`
-            margin: auto;
+            margin: 2rem auto;
             display: block;
             textAlign: center;
             color: white;

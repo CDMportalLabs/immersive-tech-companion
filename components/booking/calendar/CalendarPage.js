@@ -44,7 +44,8 @@ const CalendarPage = ({ date, dateStr, time, setDate, setDateStr, setTime, setGa
                 <Grid item container direction='row' xs='auto'>
                     <IconButton
                         onClick={() => {
-                            setDate(moment().format('YYYY-MM-DD'));
+                            setDate(new Date());
+                            setDateStr(moment().format('YYYY-MM-DD'));
                             setGame('');
                             setCurrState('game');
                             router.push({ query: {} });

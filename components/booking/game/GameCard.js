@@ -15,7 +15,7 @@ export default function GameCard(props) {
             width: 20rem;
             height: 25rem;
             background-color: gray;
-						padding: 2rem;
+			padding: 2rem;
         `,
 
 		grid: css`
