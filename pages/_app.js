@@ -1,5 +1,4 @@
 import '../styles/globals.css'
-import '../styles/booking.css';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '../lib/helpers/theme';
 

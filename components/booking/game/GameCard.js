@@ -3,43 +3,29 @@ import { css } from "@emotion/react";
 
 export default function GameCard(props) {
 	const styles = {
-		card: css`
-            margin: auto 1rem;
-            width: 20rem;
-            height: 30rem;
-			border: 1px solid #e0e0e0;
-        `
-		,
+		// Update this settings, need to be more precise
 		imageCard: css`
-            margin: 1rem 1rem;
-            width: 20rem;
-            height: 25rem;
+						margin: 20px;
+						height: 350px;
             background-color: gray;
-			padding: 2rem;
-        `,
-
-		grid: css`
-            margin: auto;
         `
 	}
 
 	return (
-		<Card>
-			<Grid container spacing={{ xs: 4, md: 2 }} direction='column' justifyContent="center" alignItems="center" padding="1rem">
+		<Card sx={{height: 500, width: 300}}>
+			<Grid container spacing={2} direction='column' justifyContent="center" alignItems="center">
 				<Grid item>
 					<Box sx={styles.imageCard}>Image placeholder</Box>
-					<Grid item container spacing={{ xs: 3, md: 2 }} justifyContent="center" alignItems="center">
-						<Grid item xs="auto">
+					<Grid item container justifyContent="center" alignItems="center">
+						<Grid item>
 							<h2 style={{ fontSize: "12px", margin: "0" }}>{props.title}</h2>
 						</Grid>
-						<Grid item xs="auto">
-							<Box style={{ fontSize: "10px", margin: "0" }}>{props.numOfPlayers} players | {props.duration} mins</Box>
+						<Grid item>
+							<Box style={{ fontSize: "10px", marginLeft: "10px" }}>{props.numOfPlayers} players | {props.duration} mins</Box>
 						</Grid>
-						<Grid item xs="auto">
+						<Grid item>
 							<p style={{ fontSize: "10px", margin: "2" }}>Deep signal introduction</p>
 						</Grid>
-
-
 					</Grid>
 				</Grid>
 			</Grid>

@@ -17,3 +17,13 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+.swiper {
+  width: 100vw;
+  height: 60vh;
+}
+
+.swiper-slide {
+  width: 75%;
+}
