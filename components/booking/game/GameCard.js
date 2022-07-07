@@ -5,23 +5,22 @@ export default function GameCard(props) {
 	const styles = {
 		// Update this settings, need to be more precise
 		imageCard: css`
-						margin: 20px;
-						height: 350px;
+			margin: 20px;
+			height: 350px;
             background-color: gray;
         `,
 		gameCard: css`
 		 	margin: 0;
-			padding: 0;
-			height: 500px;
+			height: 100%;
 			width: 300px;
 			box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-      border-radius: 16px;
+      		border-radius: 16px;
 		`
 	}
 
 	return (
 		<Card sx={styles.gameCard}>
-			<Grid container spacing={2} direction='column' justifyContent="center" alignItems="center">
+			<Grid container spacing={{xs: 1, md: 2}} direction='column' justifyContent="center" alignItems="center">
 				<Grid item>
 					<Box sx={styles.imageCard}>Image placeholder</Box>
 					<Grid item container justifyContent="center" alignItems="center">
