@@ -11,9 +11,10 @@ export default function GameCard(props) {
         `,
 		gameCard: css`
 		 	margin: 0;
+			padding: 0;
 			height: 500px;
 			width: 300px;
-			box-shadow: 0px 7px 40px rgba(0, 0, 0, 0.1);
+			box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
       border-radius: 16px;
 		`
 	}
@@ -24,14 +25,14 @@ export default function GameCard(props) {
 				<Grid item>
 					<Box sx={styles.imageCard}>Image placeholder</Box>
 					<Grid item container justifyContent="center" alignItems="center">
-						<Grid item>
-							<h2 style={{ fontSize: "12px", margin: "0" }}>{props.title}</h2>
+						<Grid item xs={6}>
+							<h2 style={{ fontSize: "12px", margin: "0 1rem" }}>{props.title}</h2>
 						</Grid>
 						<Grid item>
 							<Box style={{ fontSize: "10px", marginLeft: "10px" }}>{props.numOfPlayers} players | {props.duration} mins</Box>
 						</Grid>
 						<Grid item>
-							<p style={{ fontSize: "10px", margin: "2" }}>Deep signal introduction</p>
+							<p style={{ fontSize: "10px", marginTop: "2rem" }}>**Introduction**</p>
 						</Grid>
 					</Grid>
 				</Grid>

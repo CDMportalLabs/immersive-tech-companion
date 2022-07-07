@@ -1,17 +1,20 @@
 import { css } from "@emotion/react";
 import React, { useState } from "react";
 import { Box } from '@mui/system';
-import { Avatar, TextField, Button, MenuItem, Grid, IconButton, List, ListItem } from "@mui/material";
+import { Avatar, TextField, Button, MenuItem, Grid, IconButton, List, ListItem, ListItemButton} from "@mui/material";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import GameCard from './GameCard';
+import { useTheme } from "@mui/material/styles";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
 import "swiper/css/pagination";
 import 'swiper/css';
+
 // import { Pagination } from "swiper";
 
 const GamePage = ({ game, setGame, setLocation, setCurrState }) => {
-
+    
+    const theme = useTheme()
     const styles = {
         gameButton: css`
           margin: 6rem 2rem 0 auto;
@@ -20,7 +23,17 @@ const GamePage = ({ game, setGame, setLocation, setCurrState }) => {
           color: white;
           width: 20rem;
           height: 5rem;
-      `
+      `,
+         listItemButton: css`
+            height: 500px;
+            width: 300px;
+            padding: 0;
+            border-radius: 16px;
+            &.Mui-selected {
+                box-shadow: 0px 7px 40px rgba(255, 0, 60, 0.1);
+                border: 1px solid ${theme.palette.primary.main}
+            }
+            `
     }
 
     return (
@@ -58,31 +71,37 @@ const GamePage = ({ game, setGame, setLocation, setCurrState }) => {
                         className="mySwiper"
                     >
                         <SwiperSlide>
-                            <Button
+                            <ListItemButton
+                                selected={game === 'Deep Signal'}
+                                sx={styles.listItemButton}
                                 onClick={() => { setGame("Deep Signal") }}>
                                 <GameCard title="Deep Signal"
                                     numOfPlayers="3"
                                     duration="30"
                                     introduction="Deeep deeep signal" />
-                            </Button>
+                            </ListItemButton>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Button
-                                onClick={() => { setGame("Deep Signal") }}>
-                                <GameCard title="Deep Signal"
+                            <ListItemButton
+                                sx={styles.listItemButton}
+                                selected={game === 'Call of duty'}
+                                onClick={() => { setGame("Call of duty") }}>
+                                <GameCard title="Call of duty"
                                     numOfPlayers="3"
                                     duration="30"
                                     introduction="Deeep deeep signal" />
-                            </Button>
+                            </ListItemButton>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <Button
-                                onClick={() => { setGame("Deep Signal") }}>
-                                <GameCard title="Deep Signal"
+                            <ListItemButton
+                                sx={styles.listItemButton}
+                                selected={game === 'Fortnite'}
+                                onClick={() => { setGame("Fortnite") }}>
+                                <GameCard title="Fortnite"
                                     numOfPlayers="3"
                                     duration="30"
                                     introduction="Deeep deeep signal" />
-                            </Button>
+                            </ListItemButton>
                         </SwiperSlide>
                         <SwiperSlide>   </SwiperSlide>                    
                     </Swiper>
