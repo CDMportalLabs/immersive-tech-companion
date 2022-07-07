@@ -3,9 +3,21 @@ import Box from '@mui/material/Box';
 import { TextField, Button, Grid } from "@mui/material";
 import Head from 'next/head';
 import Link from 'next/link';
-import bgImage from '../lib/assets/play_bg.png';
+import bgImage from '../lib/assets/landing_bg.svg';
+import logoImage from '../lib/assets/brand_logo.svg';
+import { css } from "@emotion/react";
 
 export default function Home() {
+  const styles = {
+    root: css`
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 30.04%, #000000 88.73%), url(${bgImage.src});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+    `
+  }
 
   return (
     <div>
@@ -16,8 +28,11 @@ export default function Home() {
       </Head>
 
       <main>
-        <Box style={{backgroundImage: `url(${bgImage.src})`, backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundAttachment: "scroll"}}>
-          <Box sx={{height: "60vh"}}></Box>
+        <Box sx={styles.root}>
+          <Box>
+            <img src={logoImage.src} style={{margin: "1.5rem auto auto 1rem"}}/>
+          </Box>
+          <Box sx={{height: "55vh"}}></Box>
           <h1 style={{ margin: "0 auto auto 5%", fontSize: "45px" }}>Hyper-</h1>
           <h1 style={{ margin: "0 auto auto 5%", fontSize: "45px" }}>Immersive VR with Friends</h1>
           <Link href="/booking">

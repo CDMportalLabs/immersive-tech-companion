@@ -27,3 +27,10 @@ a {
 .swiper-slide {
   width: 75%;
 }
+
+h1 {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 700;
+  color: white;
+}
