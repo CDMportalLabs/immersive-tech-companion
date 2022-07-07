@@ -43,25 +43,7 @@ const GamePage = ({ game, setGame, setLocation, setCurrState }) => {
                 direction='column'
                 justifyContent="center"
                 alignItems="center"
-<<<<<<< HEAD
                 margin="2rem auto 2rem auto">
-                <Grid item container direction='row' spacing={1} alignItems="center" xs='auto'>
-                    <Grid item xs="auto">
-                        <IconButton
-                            onClick={() => {
-                                setGame('');
-                                setLocation('');
-                                setCurrState('location');
-                            }}
-                        >
-                            <ChevronLeftIcon />
-                        </IconButton>
-                    </Grid>
-                    <Grid item xs="auto">
-                        <h3 style={{ fontSize: "40px", margin: "0", marginRight: "5rem" }}>Select a Game</h3>
-                    </Grid>
-=======
-                margin="2rem auto 0 auto">
                 <Grid item container direction='row' alignItems="center" xs='auto'>
                     <IconButton
                         onClick={() => {
@@ -73,7 +55,6 @@ const GamePage = ({ game, setGame, setLocation, setCurrState }) => {
                         <ChevronLeftIcon />
                     </IconButton>
                     <h1 style={{ fontSize: "30px", margin: "0", marginRight: "5rem", color: "black" }}>Select a Game</h1>
->>>>>>> 930ed5d (Improving styling for booking confirmation and details pages)
                 </Grid>
                 <Grid item marginTop="2rem">           
                     <Swiper
