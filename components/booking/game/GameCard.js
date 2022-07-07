@@ -8,11 +8,18 @@ export default function GameCard(props) {
 						margin: 20px;
 						height: 350px;
             background-color: gray;
-        `
+        `,
+		gameCard: css`
+		 	margin: 0;
+			height: 500px;
+			width: 300px;
+			box-shadow: 0px 7px 40px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+		`
 	}
 
 	return (
-		<Card sx={{height: 500, width: 300}}>
+		<Card sx={styles.gameCard}>
 			<Grid container spacing={2} direction='column' justifyContent="center" alignItems="center">
 				<Grid item>
 					<Box sx={styles.imageCard}>Image placeholder</Box>
