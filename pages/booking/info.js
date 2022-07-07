@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import BookingContactForm from "../../components/booking/BookingContactForm";
 import { useRouter } from "next/router";
 import { Button, TextField, Grid, IconButton, FormGroup, FormControlLabel, Checkbox, CircularProgress } from "@mui/material";
-import BookingDetailsForm from "../../components/booking/BookingDetailsForm";
+import BookingDetails from "../../components/booking/BookingDetails";
 import { css } from "@emotion/react"
 import { bookSession } from "../../lib/services/booking-service";
 import { Box } from '@mui/system';
 import { firestore } from "../../firebase/clientApp";
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { validateEmailInput } from "../../lib/helpers/input-validator";
 import Cookies from 'js-cookie';
 import { INPUT_TYPES } from "../../lib/constants/input-types";
@@ -15,7 +13,7 @@ import { INPUT_TYPES } from "../../lib/constants/input-types";
 export default function BookingInfoPage() {
     const styles = {
         root: css`
-            margin: 2rem auto 0 auto;
+            margin: 0 auto 0 auto;
           `,
         bookingButton: css`
             margin: 0 auto;
@@ -92,22 +90,12 @@ export default function BookingInfoPage() {
 
     return (
         <Box sx={styles.root}>
-            {/* <IconButton onClick={() => {
-                router.replace({
-                    pathname: "/booking",
-                    shallow: true,
-                    query: {
-                        groupSize: groupSize
-                    }
-                })
-            }}>
-                <ChevronLeftIcon />
-            </IconButton> */}
-            <h1 style={{ textAlign: "center", marginTop: "0" }}>Confirm your booking</h1>
-            <BookingDetailsForm date={date} time={time} duration={duration} groupSize={groupSize} />
-            <h3 style={{ textAlign: "center" }}>Enter Your Info</h3>
-            <Grid container spacing={1} direction="column" justifyContent="center" alignItems="center">
-                <Grid item xs="auto">
+            <BookingDetails date={date} time={time} duration={duration} groupSize={groupSize} location={location} game={game}/>
+            <Grid container spacing={1} direction="column" justifyContent="center" alignItems="center" xs={12}>
+                <Grid item xs="auto" alignSelf="center">
+                    <h3 style={{ textAlign: "left" }}>Enter Your Info</h3>
+                </Grid>
+                <Grid item xs={8}>
                     <TextField
                         required
                         id="standard-required"

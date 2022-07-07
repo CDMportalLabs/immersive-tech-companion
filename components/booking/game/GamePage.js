@@ -1,21 +1,21 @@
 import { css } from "@emotion/react";
 import React, { useState } from "react";
 import { Box } from '@mui/system';
-import { Avatar, TextField, Button, MenuItem, Grid, IconButton, List, ListItem } from "@mui/material";
+import { Avatar, TextField, Button, MenuItem, Grid, IconButton, List, ListItem, ListItemButton} from "@mui/material";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import GameCard from './GameCard';
+import { useTheme } from "@mui/material/styles";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
 import "swiper/css/pagination";
 import 'swiper/css';
-import { Pagination } from "swiper";
+
+// import { Pagination } from "swiper";
 
 const GamePage = ({ game, setGame, setLocation, setCurrState }) => {
-
+    
+    const theme = useTheme()
     const styles = {
-        root: css`
-            background-color: #FAF9F6;
-          `,
         gameButton: css`
           margin: 6rem 2rem 0 auto;
           display: block;
@@ -24,74 +24,82 @@ const GamePage = ({ game, setGame, setLocation, setCurrState }) => {
           width: 20rem;
           height: 5rem;
       `,
+         listItemButton: css`
+            height: 500px;
+            width: 300px;
+            padding: 0;
+            border-radius: 16px;
+            &.Mui-selected {
+                box-shadow: 0px 7px 40px rgba(255, 0, 60, 0.1);
+                border: 1px solid ${theme.palette.primary.main}
+            }
+            `
     }
 
     return (
-        <Box sx={styles.root}>
+        <Box>
             <Grid container
-                spacing={2}
+                spacing={3}
                 direction='column'
                 justifyContent="center"
                 alignItems="center"
-                margin="2rem auto 0 auto">
-                <Grid item container direction='row' spacing={1} alignItems="center" xs='auto'>
-                    <Grid item xs="auto">
-                        <IconButton
-                            onClick={() => {
-                                setGame('');
-                                setLocation('');
-                                setCurrState('location');
-                            }}
-                        >
-                            <ChevronLeftIcon />
-                        </IconButton>
-                    </Grid>
-                    <Grid item xs="auto">
-                        <h3 style={{ fontSize: "40px", margin: "0", marginRight: "5rem" }}>Select a Game</h3>
-                    </Grid>
+                margin="2rem auto 2rem auto">
+                <Grid item container direction='row' alignItems="center" xs='auto'>
+                    <IconButton
+                        onClick={() => {
+                            setGame('');
+                            setLocation('');
+                            setCurrState('location');
+                        }}
+                    >
+                        <ChevronLeftIcon />
+                    </IconButton>
+                    <h1 style={{ fontSize: "30px", margin: "0", marginRight: "5rem", color: "black" }}>Select a Game</h1>
                 </Grid>
-                <Grid item xs="auto" marginRight="2rem">
+                <Grid item marginTop="2rem">           
                     <Swiper
                         grabCursor={true}
-                        centeredSlides={true}
-                        slidesPerView="auto"
-                        pagination={{
-                            clickable: true,
-                        }}
-                        modules={[Pagination]}
+                        slidesPerView={2}
+                        spaceBetween={250}
+                        // centeredSlides={true}
+                        // loop={true}
+                        
                         className="mySwiper"
                     >
-                        <SwiperSlide
-                            style={{
-                                backgroundPosition: "center",
-                                backgroundSize: "cover",
-                                width: "400px",
-                                height: "70vh"
-                            }}>
-                            <Button
+                        <SwiperSlide>
+                            <ListItemButton
+                                selected={game === 'Deep Signal'}
+                                sx={styles.listItemButton}
                                 onClick={() => { setGame("Deep Signal") }}>
                                 <GameCard title="Deep Signal"
                                     numOfPlayers="3"
                                     duration="30"
                                     introduction="Deeep deeep signal" />
-                            </Button>
+                            </ListItemButton>
                         </SwiperSlide>
-                        <SwiperSlide
-                            style={{
-                                backgroundPosition: "center",
-                                backgroundSize: "cover",
-                                width: "50px",
-                                height: "70vh"
-                            }}>
-                            <Button
-                                onClick={() => { setGame("Deep Signal") }}>
-                                <GameCard title="Deep Signal"
+                        <SwiperSlide>
+                            <ListItemButton
+                                sx={styles.listItemButton}
+                                selected={game === 'Call of duty'}
+                                onClick={() => { setGame("Call of duty") }}>
+                                <GameCard title="Call of duty"
                                     numOfPlayers="3"
                                     duration="30"
                                     introduction="Deeep deeep signal" />
-                            </Button>
+                            </ListItemButton>
                         </SwiperSlide>
-                        {/* <SwiperSlide>Slide 2</SwiperSlide> */}
+                        <SwiperSlide>
+                            <ListItemButton
+                                sx={styles.listItemButton}
+                                selected={game === 'Fortnite'}
+                                onClick={() => { setGame("Fortnite") }}>
+                                <GameCard title="Fortnite"
+                                    numOfPlayers="3"
+                                    duration="30"
+                                    introduction="Deeep deeep signal" />
+                            </ListItemButton>
+                        </SwiperSlide>
+                        <SwiperSlide>   </SwiperSlide>                    
                     </Swiper>
 
                 </Grid>

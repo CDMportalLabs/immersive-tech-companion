@@ -52,7 +52,7 @@ const CalendarPage = ({ date, dateStr, time, setDate, setDateStr, setTime, setGa
                         }}
                     >
                         <ChevronLeftIcon /></IconButton>
-                    <h3 style={{ fontSize: "30px", margin: "0", marginRight: "5rem" }}>Choose a session</h3>
+                    <h1 style={{ fontSize: "30px", margin: "0", marginRight: "5rem", color: "black" }}>Choose a session</h1>
                 </Grid>
                 <Grid item xs='auto'>
                     <h5 style={{ fontSize: "20px", margin: "0.5rem 2rem" }}>Select a date</h5>

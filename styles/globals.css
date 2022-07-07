@@ -17,3 +17,20 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+.swiper {
+  width: 100vw;
+  height: 60vh;
+}
+
+.swiper-slide {
+  width: 75%;
+}
+
+h1 {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 700;
+  color: white;
+}

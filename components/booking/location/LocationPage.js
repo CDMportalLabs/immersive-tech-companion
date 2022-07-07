@@ -19,7 +19,7 @@ const LocationPage = ({ location, setLocation, setCurrState }) => {
         `,
         listItemButton: css`
             padding: 0;
-            margin: 1rem auto;
+            margin: 1rem;
             border-radius: 16px;
             &.Mui-selected {
                 box-shadow: 0px 7px 40px rgba(255, 0, 74, 0.1);
@@ -40,7 +40,7 @@ const LocationPage = ({ location, setLocation, setCurrState }) => {
         <Box sx={styles.root}>
             <List sx={styles.list}>
                 <ListItem alignItems="center">
-                    <h3 style={{ fontSize: "40px", margin: "1rem auto" }}>Select a Location</h3>
+                    <h1 style={{ fontSize: "30px", margin: "1rem auto", color: "black" }}>Select a Location</h1>
                 </ListItem>
                 <ListItemButton selected={location === 'Vancouver'} sx={styles.listItemButton} alignItems="center" onClick={() => {
                     setLocation('Vancouver')

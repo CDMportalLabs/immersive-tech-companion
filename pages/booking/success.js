@@ -7,9 +7,10 @@ import Link from 'next/link';
 
 export default function BookingConfirmationPage() {
     const {query} = useRouter();
+    const {date, time, location, game} = query;
     return (
         <Box>
-            <BookingConfirmation date={query.date} time={query.time}/>
+            <BookingConfirmation date={date} time={time} location={location} game={game}/>
             <Link href="/sign-up">
                 <Button variant="contained" sx={{margin: "0 auto", display: "block"}}>
                     Sign up for an account with us!</Button>
