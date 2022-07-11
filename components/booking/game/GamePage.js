@@ -43,7 +43,7 @@ const GamePage = ({ game, setGame, setLocation, setCurrState }) => {
                 direction='column'
                 justifyContent="center"
                 alignItems="center"
-                margin="2rem auto 2rem auto">
+                margin="2rem auto 0 auto">
                 <Grid item container direction='row' alignItems="center" xs='auto'>
                     <IconButton
                         onClick={() => {
@@ -52,7 +52,7 @@ const GamePage = ({ game, setGame, setLocation, setCurrState }) => {
                             setCurrState('location');
                         }}
                     >
-                        <ChevronLeftIcon />
+                    <ChevronLeftIcon />
                     </IconButton>
                     <h1 style={{ fontSize: "30px", margin: "0", marginRight: "5rem", color: "black" }}>Select a Game</h1>
                 </Grid>
@@ -61,9 +61,6 @@ const GamePage = ({ game, setGame, setLocation, setCurrState }) => {
                         grabCursor={true}
                         slidesPerView={2}
                         spaceBetween={250}
-                        // centeredSlides={true}
-                        // loop={true}
-                        
                         className="mySwiper"
                     >
                         <SwiperSlide>

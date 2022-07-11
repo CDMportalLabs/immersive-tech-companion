@@ -33,7 +33,6 @@ const BookingDetails = ({ location, game, date }) => {
 
     return (
         <Box sx={styles.root}>
-            {/* <Box sx={{ height: "40vh" }}></Box> */}
             <Grid container direction="column" justifyContent="center" alignItems="center" sx={{paddingTop: "30vh", paddingBottom: "auto"}}>
                 <Grid item xs="auto" sx={{margin: "0 auto 0 2.5rem"}}>
                     <Box component="h1" sx={styles.gameTitleText}>{game}</Box>

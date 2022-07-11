@@ -3,62 +3,74 @@ import { css } from "@emotion/react"
 import qrCodeImage from "../../lib/assets/qr_code.png";
 import ticketBackground from "../../lib/assets/ticket_bg.png";
 import ticketBackground2 from "../../lib/assets/ticket2_bg.png";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
-import { Avatar, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import moment from 'moment';
 
-const BookingConfirmation = ({ date, time, game, location }) => {
+const BookingConfirmation = ({ date, time, game, location, duration, email }) => {
+	const styles = {
+		ticketCard: css`
+			background: url(${ticketBackground.src});
+			background-repeat: no-repeat;
+			background-position: center;
+			background-attachment: scroll;
+			height: 55vh;
+			border-radius: 40px;
+		`,
+		gameTitleText: css`
+			margin-top: 0;
+			font-size: 34px;
+		`,
+		bookingInfoText: css`
+			color: white;
+			display: inline;
+			font-size: 12px;
+		`,
+		qrCodeImage: css`
+			margin: auto;
+			padding: 2rem 1rem 0 1rem;
+		`,
+		scanText: css`
+			margin: 0;
+			padding: 0 1rem 2rem 1rem;
+			color: white;
+			font-size: 9px;
+			width: 80%;
+		`,
+		bottomTextDiv: css`
+			margin: auto 1rem;
+			text-align: center;
+		`
+	}
+
 	return (
 		<Box>
 			<Box >
-				<Box sx={{ background: `url(${ticketBackground.src})`, backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundAttachment: "scroll", height: "55vh", borderRadius: "40px" }}></Box>
+				<Box sx={styles.ticketCard}></Box>
 				<Grid container direction="row" justifyContent="center" alignItems="center" sx={{ background: `url(${ticketBackground2.src})`, backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundAttachment: "scroll", paddingTop: "0" }}>
 					<Grid container item direction="column" alignItems="flex-end" xs={6} md={6} sx={{ marginRight: "2rem" }}>
 						<Grid item xs="auto">
-							<h1 style={{marginTop: "0", fontSize: "34px"}}>{game}</h1>
-						</Grid>
-						{/* <Grid container item xs="auto" direction="row" alignItems="center" sx={{ margin: "0 auto auto auto" }}>
-							<Grid item xs="auto">
-								<Avatar sx={{ color: "gray", bgcolor: "transparent" }}>
-									<LocationOnIcon />
-								</Avatar>
-							</Grid>
-							<Grid item xs="auto">
-								<span>{location}</span>
-							</Grid>
-						</Grid> */}
-						<Grid item xs="auto" sx={{marginTop: "0"}}>
-							<span style={{color: "white", display: "inline", fontSize: "12px"}}>{time} | {moment(date).format("MMM Do YYYY")}</span>
+							<h1 style={styles.gameTitleText}>{game}</h1>
 						</Grid>
 						<Grid item xs="auto" sx={{marginTop: "0"}}>
-							<span style={{color: "white", display: "inline", fontSize: "12px"}}>{location}</span>
+							<Box component="span" sx={styles.bookingInfoText}>{time}-{moment(time, 'HH:mm').add(duration, 'm').format("HH:mm")} | {moment(date).format("MMM Do YYYY")}</Box>
 						</Grid>
-						{/* <Grid container item xs="auto" direction="row" alignItems="center" sx={{ margin: "0 auto auto auto" }}>
-							<Grid item xs="auto">
-								<Avatar sx={{ color: "gray", bgcolor: "transparent" }}>
-									<AccessAlarmIcon />
-								</Avatar>
-							</Grid>
-							<Grid item xs="auto">
-								<span>{date}, {time}</span>
-							</Grid>
-						</Grid> */}
+						<Grid item xs="auto" sx={{marginTop: "0"}}>
+							<Box component="span" sx={styles.bookingInfoText}>{location}</Box>
+						</Grid>
 					</Grid>
 					<Grid container item xs={4} md={4} direction="column" justifyContent="center" alignItems="flex-start">
 						<Grid item xs="auto">
-							<img width="80%" src={qrCodeImage.src} style={{margin: "0", paddingTop: "2rem"}}></img>
+							<Box component="img" width="80%" src={qrCodeImage.src} sx={styles.qrCodeImage}></Box>
 						</Grid>
 						<Grid item xs="auto">
-							<p style={{margin: "0", paddingBottom: "2rem", color: "white", fontSize: "9px"}}>For session details and customization</p>
+							<Box component="p" sx={styles.scanText}>Scan to join the session</Box>
 						</Grid>
 					</Grid>
 				</Grid>
-				{/* <Box height="5vh"></Box> */}
 			</Box>
-			<Box sx={{ margin: "auto 1rem", textAlign: "center" }}>
+			<Box sx={styles.bottomTextDiv}>
 				<h3>Thank you for booking!</h3>
-				<p>Above is your ticket and go ahead share it with your friends. A confirmation email will be sent to yolandahe528@gmail.com soon. </p>
+				<p>Above is your ticket and go ahead share it with your friends. A confirmation email will be sent {email ? "to "+email : ""} soon. </p>
 			</Box>
 		</Box>
 	)

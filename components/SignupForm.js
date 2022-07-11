@@ -81,7 +81,7 @@ const SignupForm = (props) => {
         } else {
             const resp = await register(userProfile);
             const {password, ...userInfo} = userProfile;
-            // create a new user in firestore users collection
+            // TODO: create a new user in firestore users collection and need to be refined based on new database design
             await firestore.collection("users").doc().set(userInfo);
             if (resp) {
                 setLoading(false);
