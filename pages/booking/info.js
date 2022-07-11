@@ -61,7 +61,7 @@ export default function BookingInfoPage() {
         setLoading(true);
         // Use router query data to transfer booking details to confirmation page
         await bookSession(date, groupSize, duration, time);
-        // Integrating firestore database
+        // TODO: Integrating firestore database and need to be refined based on new database design
         await firestore.collection("bookings").doc().set({
             ...contactInfo,
             date: date,
@@ -86,6 +86,7 @@ export default function BookingInfoPage() {
         });
         // log out of guest account
         Cookies.remove("customerToken");
+        Cookies.set("email", contactInfo.email);
     }
 
     return (
